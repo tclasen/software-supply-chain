@@ -68,8 +68,5 @@ plugins = ['pydantic.mypy']
 
 [tool.pytest.ini_options]
 addopts = '-ra -vv --strict-config --strict-markers --import-mode=importlib'
-markers = [
-    "integration: marks tests as requiring external resource (deselect with '-m \"not integration\"')",
-]
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "session"
