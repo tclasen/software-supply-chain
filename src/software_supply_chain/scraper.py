@@ -4,8 +4,8 @@ from typing import Annotated
 import httpx
 import logfire
 from httpx_retries import Retry, RetryTransport
+from pydantic import AfterValidator, BeforeValidator, ConfigDict, Field
 from pydantic import BaseModel as PydanticBaseModel
-from pydantic import BeforeValidator, ConfigDict, Field
 
 logfire.instrument_httpx()
 
@@ -52,7 +52,7 @@ def normalize(string: str) -> str:
 
 
 class PackageInfo(BaseModel):
-    name: str
+    name: Annotated[str, AfterValidator(normalize)]
     requires_dist: set[Annotated[str, BeforeValidator(strip_package_version)]] | None
 
 
