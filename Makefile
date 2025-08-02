@@ -32,3 +32,14 @@ install:
 clean:
 	git clean -dfX
 
+.PHONY: download
+download:
+	uv run src/software_supply_chain/download_pypi.py
+
+.PHONY: serve
+serve:
+	uv run uvicorn --host=0.0.0.0 --port=8000 --root-path=src --reload software_supply_chain.web:app
+
+.PHONY: datasette
+datasette:
+	datasette pypi.db
