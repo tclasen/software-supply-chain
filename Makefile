@@ -42,4 +42,4 @@ serve:
 
 .PHONY: datasette
 datasette:
-	datasette pypi.db
+	uv run datasette pypi.db
